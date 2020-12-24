@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{title}}</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    {{!-- official bs --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/profile.css">
+
+
+    <link href="assets/datatables.bootstrap4.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        {{> profileSidebar}}
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                {{> profileTopbar}}
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Statement</h1>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-bottom-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <span class="badge badge-pill badge-primary"
+                                                style="font-size: 0.7rem;">Available Balance</span>
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800 ">
+                                            ৳ {{balance}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-wallet fa-2x text-primary-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        {{!-- Income Statement --}}
+                        <div class="col-lg-6">
+                            <h1>Income Statement </h1>
+                            <!-- Collapsable Card Referal Income...-->
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Accordion -->
+                                <a href="#incomeStat" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="incomeStat">
+                                    <h6 class="m-0 font-weight-bold text-success">Your All Income Records</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="incomeStat">
+                                    <div class="card-body">
+                                        {{!-- <div class="col-xl-4 col-md-7 mb-4"> --}}
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div
+                                                                class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                                Total Earning Balance</div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                                ৳{{totalEarnBal}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!--
+                                        </div> --}}
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="incomeStat">
+                                    <div class="card-body">
+
+                                        <div class="accordion" id="incomeInfoTable">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="one">
+                                                    <button class="accordion-button" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseOne1"
+                                                        aria-expanded="true" aria-controls="collapseOne1">
+                                                        Activation Money Back Income
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne1" class="accordion-collapse collapse show"
+                                                    aria-labelledby="one" data-bs-parent="#incomeInfoTable">
+                                                    <div class="accordion-body badge badge-success text-wrap p-2 m-2">
+                                                        You have received total: <span style="font-size: 1rem;">৳
+                                                            {{atcIncome}}</span>
+                                                    </div>
+                                                    <div class="accordion-body">
+                                                        {{!-- Table --}}
+                                                        <div class="container table-responsive">
+                                                            <table class="table table-bordered table table-sm"
+                                                                id="dataTable" width="100%" cellspacing="0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>User Id</th>
+                                                                        <th>Activation Money Back Earn</th>
+                                                                        <th>Time</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {{#each activationMonBack}}
+                                                                    <tr>
+                                                                        <td>{{this.user_id}}</td>
+                                                                        <td>{{this.active_mony_back}}</td>
+                                                                        <td><small>{{this.time}}</small></td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        {{!-- Table end --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {{!-- 2 dropdown--}}
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="two">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree2"
+                                                        aria-expanded="false" aria-controls="collapseThree2">
+                                                        Video Watching Income
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree2" class="accordion-collapse collapse"
+                                                    aria-labelledby="two" data-bs-parent="#incomeInfoTable">
+                                                    <div class="accordion-body badge badge-success text-wrap p-2 m-2">
+                                                        You have received total: <span style="font-size: 1rem;">৳
+                                                            {{vdIncome}}</span>
+                                                    </div>
+                                                    <div class="accordion-body">
+                                                        {{!-- Table --}}
+                                                        <div class="container table-responsive">
+                                                            <table class="table table-bordered table table-sm"
+                                                                id="dataTable2" width="100%" cellspacing="0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>User Id</th>
+                                                                        <th>Video Watching Earn Amount</th>
+                                                                        <th>Time</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tbody>
+                                                                    {{#each videoEarning}}
+                                                                    <tr>
+                                                                        <td>{{this.user_id}}</td>
+                                                                        <td>{{this.video_earning}}</td>
+                                                                        <td><small>{{this.time}}</small></td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                </tbody>
+
+                                                            </table>
+                                                        </div>
+                                                        {{!-- Table end --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {{!-- 3 dropdown --}}
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="three">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree3"
+                                                        aria-expanded="false" aria-controls="collapseThree3">
+                                                        Referral Income
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree3" class="accordion-collapse collapse"
+                                                    aria-labelledby="three" data-bs-parent="#incomeInfoTable">
+                                                    <div class="accordion-body badge badge-success text-wrap p-2 m-2">
+                                                        You have received total: <span style="font-size: 1rem;">৳
+                                                            {{refIncome}}</span>
+                                                    </div>
+                                                    <div class="accordion-body">
+                                                        {{!-- Table --}}
+                                                        <div class="container table-responsive">
+                                                            <table class="table table-bordered table table-sm"
+                                                                id="dataTable3" width="100%" cellspacing="0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>User Id</th>
+                                                                        <th>Referral Earn Amount</th>
+                                                                        <th>Time</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {{#each refEarning}}
+                                                                    <tr>
+                                                                        <td>{{this.user_id}}</td>
+                                                                        <td>{{this.ref_earning}}</td>
+                                                                        <td><small>{{this.time}}</small></td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        {{!-- Table end --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!--Withdraw Statement... --}}
+                        <div class="col-lg-6">
+                            <h1>Withdraw Statement </h1>
+                            <!-- Collapsable Card Referal Income...-->
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Accordion -->
+                                <a href="#withdrawStat" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="withdrawStat">
+                                    <h6 class="m-0 font-weight-bold text-danger">Your All Withdraw Records</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="withdrawStat">
+                                    <div class="card-body">
+                                        {{!-- <div class="col-xl-4 col-md-7 mb-4"> --}}
+                                            <div class="card border-left-danger shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div
+                                                                class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                                Total Withdraw Balance</div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">৳
+                                                                {{wBal}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{!--
+                                        </div> --}}
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="withdrawStat">
+                                    <div class="card-body">
+                                        <div class="accordion-body">
+                                            {{!-- Table --}}
+                                            <div class="container table-responsive">
+                                                <table class="table table-bordered table table-sm" id="dataTable4"
+                                                    width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>User Id</th>
+                                                            <th>Withdraw Amount</th>
+                                                            <th>Time</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each withdrawBal}}
+                                                        <tr>
+                                                            <td>{{this.user_Id}}</td>
+                                                            <td>{{this.amount}}</td>
+                                                            <td><small>{{this.solve_date}}</small></td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            {{!-- Table end --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- End of Main Content -->
+            </div>
+            <!-- End of Content Wrapper -->
+            <!-- Footer -->
+            {{> profileFooter}}
+            <!-- End of Footer -->
+        </div>
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{!-- official bs bundel --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
+
+        <!-- Page level plugin JavaScript-->
+        <script src="assets/jquery.datatables.min.js"></script>
+
+        <script src="assets/datatables.bootstrap4.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable();
+            });
+
+            $(document).ready(function () {
+                $('#dataTable2').DataTable();
+            });
+            $(document).ready(function () {
+                $('#dataTable3').DataTable();
+            });
+            $(document).ready(function () {
+                $('#dataTable4').DataTable();
+            });
+        </script>
+
+</body>
+
+</html>

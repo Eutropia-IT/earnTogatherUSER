@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <!-- ORGINAL BS CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+
+<body>
+    <div class="registration-form">
+        <form action="/signup" method="POST">
+            <div class="container text-center">
+                <h2 class="fs-title text-primary">Create Account</h2>
+                <P class="fs-subtitle">Don't have an account? <br> Create your account, it takes less than a minute</p>
+                <hr>
+            </div>
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            {{!-- show error massage --}}
+            {{#if signUpPageErrMess}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{signUpPageErrMess}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {{/if}}
+
+            <div class="form-group">
+                <label for="referralID">Referral Id
+                    <small class="text-muted">(Optional)</small>
+                </label>
+                <input type="number" class="form-control item" id="referralID" placeholder="Referral Id"
+                    name="referralID">
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name<span class="text-danger font-weight-bold">*</span></label>
+                <input type="text" class="form-control item" id="firstName" placeholder="First Name" name="firstName"
+                    required>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <div class="form-group">
+                <label for="lasttName">Last Name</label>
+                <input type="text" class="form-control item" id="lasttName" placeholder="Last Name" name="lasttName">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email<span class="text-danger font-weight-bold">*</span></label>
+                <input type="email" class="form-control item" id="email" placeholder="Email" name="email" required>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <label for="contNumber">Contact Number<span class="text-danger font-weight-bold">*</span></label>
+            <div class="input-group  m-0">
+                <div class="input-group-text" style=" width: 50px; height: 46px; border-radius: 35% 0  0 35%;;">+88
+                </div>
+                <input type="number" class="form-control item " id="contNumber" placeholder="01XXXXXXXXX"
+                    name="contNumber" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password<span class="text-danger font-weight-bold">*</span></label>
+                <input type="password" class="form-control item" id="password" placeholder="Password" name="password"
+                    required>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password<spanclass="text-danger font-weight-bold">*</span></label>
+                <input type="password" class="form-control item" id="confirmPassword" placeholder="Confirm Password"
+                    name="confirmPassword" required>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+
+            <div class="form-group">
+                <label for="sq1">Your Favourite Club<span class="text-danger font-weight-bold">*</span></label>
+                <input type="text" class="form-control item" id="sq1" placeholder="Enter Your Answer" name="sq1"
+                    required>
+                <small id="sq1lHelp" class="form-text text-muted">Security Question:1</small>
+            </div>
+
+            <div class="form-group">
+                <label for="sq2">Your Favourite Place<span class="text-danger font-weight-bold">*</span></label>
+                <input type="text" class="form-control item" id="sq2" placeholder="Enter Your Answer" name="sq2"
+                    required>
+                <small id="sq1lHelp" class="form-text text-muted">Security Question:2</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-block create-account">Create Account</button>
+            </div>
+
+        </form>
+        <div class="social-media">
+            <div class="container text-center pb-3">
+                <p>Already have account? <a href="/" class="font-weight-bold">Login</a></p>
+            </div>
+
+            <!-- <h5>Sign up with social media</h5>
+            <div class="social-icons">
+                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+            </div> -->
+        </div>
+    </div>
+
+    <!--Orginal Bs Bundel-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="js/signup.js"></script>
+</body>
+
+</html>
