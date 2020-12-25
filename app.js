@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const https = require('https');
+const fs = require('fs');
 const hbs = require("hbs");
 hbs.registerHelper("equal", require("handlebars-helper-equal"));
 
@@ -45,7 +47,13 @@ app.use(flash());
 app.use('/', pagesRouter);
 
 
-
+const sslServer = https.createServer({
+    cert: fs.readFileSync(path.join(__dirname,'/ssl/cert.pem')),
+    key: fs.readFileSync(path.join(__dirname,'/ssl/key.pem')),
+    ca: fs.readFileSync(path.join(__dirname,'/ssl/ca.pem'))
+}, app);
 
 /**server */
-app.listen();
+sslServer.listen(8000, ()=>{
+    console.log('server ok 8000');
+});
