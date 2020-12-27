@@ -95,7 +95,7 @@
                                                             <div class="text-center">
                                                                 <img src="images/bKash.png"
                                                                     class="rounded mx-auto d-block" alt="bKash">
-                                                                <p class="font-weight-bold">01515620108</p>
+                                                                <p class="font-weight-bold">{{bKashNum}}</p>
                                                             </div>
                                                         </label>
                                                     </div>
@@ -106,7 +106,7 @@
                                                             <div class="text-center">
                                                                 <img src="images/rocket.png"
                                                                     class="rounded mx-auto d-block" alt="rocket">
-                                                                <p class="font-weight-bold">01515620108</p>
+                                                                <p class="font-weight-bold">{{rocketNum}}</p>
                                                             </div>
                                                         </label>
                                                     </div>
@@ -162,7 +162,7 @@
                     {{#equal account_status 'active'}}
                     <div class="alert alert-warning" role="alert">
                         <h4 class="alert-heading">Hey!</h4>
-                        <p>You have an active package since <strong>{{activation_date}}</strong></p>
+                        <p>You have an active package since <strong>{{dateFormat activation_date "LLL"}}</strong></p>
                         <hr>
                         If you want to upgrade your package,Please <a href="/upgradPackage" class="alert-link">go to
                             this link</a>. Give it a

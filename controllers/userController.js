@@ -199,7 +199,7 @@ exports.forgotPasswordPostController = (req, res) => {
         else {
             const resetTokenStr = crypto.randomBytes(32).toString('hex');
             passResetToken = crypto.createHash('sha256').update(resetTokenStr).digest('hex');
-            data = [{
+            let data = [{
                 user_id: result[0].user_id,
                 reset_token: passResetToken
             }];
@@ -275,9 +275,9 @@ exports.resetPasswordPostController = (req, res) => {
             req.flash('errorPageMess', `Token is invalied or expired!`)
             return res.redirect('/fof');
         } else {
-            //console.log(result[0].user_id);
+            
             let hashedPasswword = await bcrypt.hash(password.trim(), 8);
-            data = [
+            let data = [
                 { password: hashedPasswword }, { user_id: result[0].user_id }
             ];
             userModel.updateProfileInfo(data, (error, result) => {
@@ -285,7 +285,7 @@ exports.resetPasswordPostController = (req, res) => {
                     req.flash('errorPageMess', error);
                     return res.redirect('/fof');
                 } else {
-                    //req.flash('profileSueccFlash', 'Password Changed Sucessfully!');
+                    req.flash('homePageSuccMess', 'Password Changed Sucessfully!Please login with your new password.');
                     return res.redirect('/');
                 }
             });

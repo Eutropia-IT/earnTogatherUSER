@@ -58,46 +58,58 @@ router
 router
     .route('/profile')
     .get(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         profileController.profileGetController)
     .post(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         profileController.updateProfilePostController);
 
 
 router
     .route('/newIdActivation')
     .get(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         idActivationController.applyNewIdActivGetController)
     .post(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         idActivationController.applyNewIdActivPostController);
 
 router
     .route('/upgradPackage')
     .get(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         idActivationController.upgradPackgGetController)
     .post(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         idActivationController.upgradPackgPostController);
 
 router
     .route('/cashout')
     .get(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         cashOutController.cashOutGetController)
     .post(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         cashOutController.cashOutPostController);
 
 router
     .route('/statement')
     .get(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         statementController.stamntGetController);
 router
     .route('/activityLog')
     .get(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         profileController.activityLogGetController);
 
 router
     .route('/watchVideo')
     .get(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         videoEarnController.videoEarnGetController)
     .post(profileController.isLoggedInAuth,
+        profileController.findUserMiddleware,
         videoEarnController.videoEarnPostController);
 
 

@@ -5,6 +5,7 @@ const https = require('https');
 const fs = require('fs');
 const hbs = require("hbs");
 hbs.registerHelper("equal", require("handlebars-helper-equal"));
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 const pagesRouter = require('./routes/pagesRouter');
 

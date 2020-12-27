@@ -87,7 +87,7 @@ exports.cashOutPostController = (req, res) => {
     }];
     let subject = `Request for Chsh-Out [USER ID# ${userId}]`;
     let message =
-        `You have successfully applied to withdraw your balance. Our team takes a little bit amount of time to activate your account process. Thanks for cooperating with us.
+        `You have successfully applied to withdraw your balance. Our team takes a little bit of time to activate your account process. Thanks for cooperating with us.
         Submited Information
     
         Payment Recive Method: ${paymentMethod}
@@ -107,7 +107,7 @@ exports.cashOutPostController = (req, res) => {
                     message
 
                 });
-                req.flash('cahsoutPageSuccMess', 'You have successfully applied to withdraw your balance. Our team takes a little bit amount of time to activate your account process. Thanks for cooperating with us.');
+                req.flash('cahsoutPageSuccMess', 'You have successfully applied to withdraw your balance. Our team takes a little bit of time to activate your account process. Thanks for cooperating with us.');
                 return res.redirect('/cashout');
             } catch (error) {
                 req.flash('cahsoutPageErrMess', 'There was error sending the email!');

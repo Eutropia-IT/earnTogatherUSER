@@ -1,6 +1,22 @@
 const userModel = require('../modal/userModal');
 const bcrypt = require('bcryptjs');
 
+exports.findUserMiddleware = (req, res, next) =>{
+    const getProfileID = req.session.result[0].user_id * 1;
+    userModel.findUserByID(getProfileID, (error, result) =>{
+        if (error) return error;
+        if(result.length === 0) {
+            req.session.destroy(error => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    return res.redirect('/404');
+                }
+            });
+        }
+        else next();
+    });
+};
 
 // 1.0 user profile [GET]
 exports.profileGetController = (req, res) => {
@@ -147,6 +163,7 @@ exports.activityLogGetController = (req, res) => {
                 user_id: result[0].user_id,
                 firstName: result[0].firstName,
                 lastName: result[0].lastName,
+                account_status: result[0].account_status,
                 logTableData: logTableRus
             });
         })

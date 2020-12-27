@@ -148,7 +148,7 @@
                                                                     <tr>
                                                                         <td>{{this.user_id}}</td>
                                                                         <td>{{this.active_mony_back}}</td>
-                                                                        <td><small>{{this.time}}</small></td>
+                                                                        <td><small>{{dateFormat this.time "LLL"}}</small></td>
                                                                     </tr>
                                                                     {{/each}}
                                                                 </tbody>
@@ -192,7 +192,7 @@
                                                                     <tr>
                                                                         <td>{{this.user_id}}</td>
                                                                         <td>{{this.video_earning}}</td>
-                                                                        <td><small>{{this.time}}</small></td>
+                                                                        <td><small>{{dateFormat this.time "LLL"}}</small></td>
                                                                     </tr>
                                                                     {{/each}}
                                                                 </tbody>
@@ -236,7 +236,7 @@
                                                                     <tr>
                                                                         <td>{{this.user_id}}</td>
                                                                         <td>{{this.ref_earning}}</td>
-                                                                        <td><small>{{this.time}}</small></td>
+                                                                        <td><small>{{dateFormat this.time "LLL"}}</small></td>
                                                                     </tr>
                                                                     {{/each}}
                                                                 </tbody>
@@ -308,7 +308,7 @@
                                                         <tr>
                                                             <td>{{this.user_Id}}</td>
                                                             <td>{{this.amount}}</td>
-                                                            <td><small>{{this.solve_date}}</small></td>
+                                                            <td><small>{{dateFormat this.solve_date "LLL"}}</small></td>
                                                         </tr>
                                                         {{/each}}
                                                     </tbody>

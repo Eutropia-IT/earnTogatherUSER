@@ -26,6 +26,7 @@ exports.stamntGetController = (req, res) => {
                                 user_id: result[0].user_id,
                                 firstName: result[0].firstName,
                                 lastName: result[0].lastName,
+                                account_status: result[0].account_status,
                                 totalEarnBal: balResult[0].atcIncome + balResult[0].vdIncome + balResult[0].refIncome,
                                 atcIncome: balResult[0].atcIncome*1,
                                 vdIncome: balResult[0].vdIncome*1,
