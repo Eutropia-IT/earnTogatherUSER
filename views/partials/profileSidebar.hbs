@@ -44,6 +44,9 @@
                 {{#equal account_status 'active'}}
                 <a class="collapse-item" href="/upgradPackage">Apply Upgrade package</a>
                 {{/equal}}
+                {{#equal account_status 'renew needed'}}
+                <a class="collapse-item" href="/upgradPackage">Apply Upgrade package</a>
+                {{/equal}}
                 {{#equal account_status 'block'}}
                 <a class="collapse-item" href="/upgradPackage">Apply Upgrade package</a>
                 {{/equal}}

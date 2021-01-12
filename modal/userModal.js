@@ -1,4 +1,5 @@
 const pool = require('../config/database');
+const MOMENT = require('moment');
 
 
 // B.0 User Login [USER TABLE]
@@ -154,6 +155,21 @@ exports.getDailyVidIncome = (userId, callBack) => {
             return callBack(null, result);
         }
     );
+};
+// get total income from activation date [USER INCPME TABLE]
+exports.totalIncomeFromActivPkg = (user_id,actDate, callBack) => {
+    pool.query(
+        `SELECT SUM(active_mony_back)+SUM(video_earning)+SUM(ref_earning) AS total_inc
+        FROM user_income
+        WHERE user_Id = ? AND (time>= ? AND time <= CURRENT_TIMESTAMP)`,
+        [user_id, actDate],
+        (error, result) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, result);
+        }
+    )
 };
 // find user income withdraw balance
 exports.userBalance = (id, callBack) => {

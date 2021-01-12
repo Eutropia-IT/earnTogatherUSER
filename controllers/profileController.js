@@ -1,11 +1,24 @@
 const userModel = require('../modal/userModal');
 const bcrypt = require('bcryptjs');
 
-exports.findUserMiddleware = (req, res, next) =>{
+const GA_MAX_EARN_LIMT = 900;
+const GB_MAX_EARN_LIMT = 1500;
+const GC_MAX_EARN_LIMT = 3000;
+const GD_MAX_EARN_LIMT = 15000;
+
+function maxEarnLimite(group_type) {
+    if (group_type === 'A') return GA_MAX_EARN_LIMT;
+    else if (group_type === 'B') return GB_MAX_EARN_LIMT;
+    else if (group_type === 'C') return GC_MAX_EARN_LIMT;
+    else if (group_type === 'D') return GD_MAX_EARN_LIMT;
+
+}
+
+exports.findUserMiddleware = (req, res, next) => {
     const getProfileID = req.session.result[0].user_id * 1;
-    userModel.findUserByID(getProfileID, (error, result) =>{
+    userModel.findUserByID(getProfileID, (error, result) => {
         if (error) return error;
-        if(result.length === 0) {
+        if (result.length === 0) {
             req.session.destroy(error => {
                 if (error) {
                     console.log(error);
@@ -17,14 +30,40 @@ exports.findUserMiddleware = (req, res, next) =>{
         else next();
     });
 };
+exports.accRenewMiddleware = (req, res, next) => {
+    user_id = req.session.result[0].user_id * 1;
+    userModel.findUserByID(user_id, (error, result) => {
+        if (error) return error;
+        userModel.totalIncomeFromActivPkg(user_id, result[0].activation_date, (error, incResult) => {
+            if (error) return error;
+            else {
+                if (incResult[0].total_inc >= maxEarnLimite(result[0].group_type)) {
+                    data = [
+                        { account_status: 'renew needed'},
+                        { user_id: user_id }
+                    ];
+                    userModel.updateProfileInfo(data, (error, result) => {
+                        if (error) {
+                            req.flash('reNewAccMess', error.toString());
+                            return next();
+                        } else {
+                            req.flash('reNewAccMess', incResult[0].total_inc);
+                            return next();
+                        }
+                    });
+                }else next();
 
+            }
+        });
+    });
+};
 // 1.0 user profile [GET]
 exports.profileGetController = (req, res) => {
     const getProfileID = req.session.result[0].user_id * 1;
-    
+
     userModel.findUserByID(getProfileID, (error, result) => {
         if (error) return error;
-        
+
         return res.render('profile', {
             title: 'Profle',
             user_id: result[0].user_id,
@@ -37,10 +76,11 @@ exports.profileGetController = (req, res) => {
             activationDate: result[0].activation_date,
             packageUsed: result[0].package_used * 1,
             xyz: result[0].password,
-
+            
 
             successfullMess: req.flash('profileSueccFlash'),
             unSuccessfullMess: req.flash('profileErrorFlash'),
+            reNewAccMess: req.flash('reNewAccMess')[0]
 
 
         });

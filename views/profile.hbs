@@ -61,9 +61,6 @@
             <h1 class="h3 mb-0 text-gray-800">Profile</h1>
           </div>
 
-
-
-
           <div class="row">
             {{#if successfullMess}}
             <div class="container">
@@ -82,11 +79,12 @@
               </div>
             </div>
             {{/if}}
+
             <div class="col-lg-12 mb-4">
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Presonal Inromation</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Personal Information</h6>
                 </div>
                 <div class="card-body ">
 
@@ -103,7 +101,10 @@
 
                     <div class="col-lg col-md">
                       <div class="col mb-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Active Group</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                          {{#equal account_status 'renew needed'}} Previous {{/equal}}
+                          Active Group
+                        </div>
                         <div class="h5 mb-0 font-weight-bold  text-center circle-group m-auto">
                           {{#if group_type}}
                           {{group_type}}
@@ -131,6 +132,14 @@
                         </div>
                       </div>
                       {{/equal}}
+                      {{#equal account_status 'renew needed' }}
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Account Status</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Renew Needed
+                          <i class="fas fa-pause-circle fa-1x text-warning"></i>
+                        </div>
+                      </div>
+                      {{/equal}}
                       {{#equal account_status 'block'}}
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Account Status</div>
@@ -149,6 +158,15 @@
                       <p class="text-info">Since, {{dateFormat activationDate "LLL"}} </p>
                     </div>
                   </div>
+                  {{#if reNewAccMess}}
+                  <div class="container">
+                    <div class="alert alert-info alert-dismissible fade show text-danger text-center" role="alert">
+                      <strong>You have crossed your maximum earning limit. You have total earned from this current
+                        package:{{reNewAccMess}}/-<br> Please reactivate your account again!</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+                  {{/if}}
                   <hr>
 
                   <div class="row">

@@ -85,7 +85,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Earm Money</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Earn Money</h1>
                     </div>
                     <h1>Watch Video </h1>
                     <div class="container mb-4">
@@ -107,7 +107,7 @@
                             {{/if}}
 
                             <div class="card-header  d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Avalable Video</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Available Video</h6>
                                 <p>Your today's income <strong>৳{{todaysInc}}</strong></p>
                             </div>
 
@@ -123,7 +123,7 @@
                                 <div class="wrapper">
                                     <strong class="text-danger">৳{{videoPrice}}</strong>
                                     <p><span id="seconds">00</span>:<span id="tens">00</span>
-                                        <small class="text-info"> (Watch Video Minimum 30 Seconds)</small>
+                                        <small class="text-info"> (Watch Video Minimum 60 Seconds)</small>
                                     </p>
                                     <form action="/watchVideo" method="POST">
                                         <input type="hidden" name="userID" value="{{user_id}}">
@@ -232,7 +232,7 @@
                 if (seconds > 9) {
                     appendSeconds.innerHTML = seconds;
                 }
-                if (seconds === 30) {
+                if (seconds === 6) {
                     txt.style.display = `block`;
                 }
             }

@@ -38,7 +38,9 @@ router
     .route('/package')
     .get(userController.publicPageAuth,
         userController.packageGetController);
-
+router
+    .route('/aboutUs')
+    .get(userController.aboutUsGetController);
 router
     .route('/forgotPassword')
     .get(userController.publicPageAuth,
@@ -52,16 +54,20 @@ router
         userController.resetPasswordGetController)
     .post(userController.publicPageAuth,
         userController.resetPasswordPostController);
-
+router
+    .route('/publicCusEmail')
+    .post(userController.publicCustomerEmail);
 
 
 router
     .route('/profile')
     .get(profileController.isLoggedInAuth,
         profileController.findUserMiddleware,
+        profileController.accRenewMiddleware,
         profileController.profileGetController)
     .post(profileController.isLoggedInAuth,
         profileController.findUserMiddleware,
+        profileController.accRenewMiddleware,
         profileController.updateProfilePostController);
 
 
@@ -107,9 +113,11 @@ router
     .route('/watchVideo')
     .get(profileController.isLoggedInAuth,
         profileController.findUserMiddleware,
+        profileController.accRenewMiddleware,
         videoEarnController.videoEarnGetController)
     .post(profileController.isLoggedInAuth,
         profileController.findUserMiddleware,
+        profileController.accRenewMiddleware,
         videoEarnController.videoEarnPostController);
 
 

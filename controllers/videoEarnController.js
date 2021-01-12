@@ -23,7 +23,7 @@ exports.videoEarnGetController = (req, res) => {
             req.flash('videoPageErrMess', error.toString());
             return res.redirect('/watchVideo');
         }
-        if(result[0].account_status === 'pending' || result[0].account_status === 'block'){
+        if(result[0].account_status === 'pending' || result[0].account_status === 'block' || result[0].account_status === 'renew needed'){
             req.flash('profileErrorFlash', 'For video watching earn, you have to need activate your account!');
             return res.redirect('/profile')
         }

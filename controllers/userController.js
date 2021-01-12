@@ -1,4 +1,5 @@
 personalEmail = require('../utils/personalEmail');
+const sendEmail = require('../utils/email');
 const userModel = require('../modal/userModal');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
@@ -7,7 +8,7 @@ const crypto = require('crypto');
 // A) Root
 exports.home = (req, res) => {
     res.render('index', {
-        title: 'Home',
+        title: 'Earn Together',
 
         homePageSuccMess: req.flash('homePageSuccMess'),
         homePageErrMess: req.flash('homePageErrMess')
@@ -138,7 +139,7 @@ exports.varifySignupEmail = (req, res, next) => {
         }
         next();
     });
-    
+
 };
 // D.3) signup page [POST]
 exports.signupPostController = async (req, res) => {
@@ -275,7 +276,7 @@ exports.resetPasswordPostController = (req, res) => {
             req.flash('errorPageMess', `Token is invalied or expired!`)
             return res.redirect('/fof');
         } else {
-            
+
             let hashedPasswword = await bcrypt.hash(password.trim(), 8);
             let data = [
                 { password: hashedPasswword }, { user_id: result[0].user_id }
@@ -302,6 +303,12 @@ exports.packageGetController = (req, res) => {
         disNewIDAply: 'd-none'
     });
 };
+//H
+exports.aboutUsGetController = (req, res) => {
+    res.render('aboutUs', {
+        title: 'About Us'
+    });
+};
 
 
 /// Utilies
@@ -312,6 +319,22 @@ exports.publicPageAuth = (req, res, next) => {
     next();
 };
 
+exports.publicCustomerEmail = async (req, res) => {
+    const { email, message } = req.body
+    let subject = 'General Contact Us Email'
+    try {
+        await sendEmail({
+            email,
+            subject,
+            message
+        });
+        req.flash('homePageSuccMess', 'Email sent successfully! Please wait for your response.');
+        return res.redirect('/');
+    } catch (error) {
+        req.flash('homePageErrMess', 'There was error sending the email!');
+        return res.redirect('/');
+    }
+};
 // 404 controller
 exports.fof = (req, res) => {
     res.render('404', {

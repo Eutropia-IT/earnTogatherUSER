@@ -196,7 +196,9 @@
     border-color: #FE5F85;
 }
 .pricingTable.blue:after{ background-color: #00CCFF; }
+.pricingTable.red:after{ background-color: #dc3545; }
 .pricingTable.blue .price-value{ background-color: #00CCFF; }
+.pricingTable.red .price-value{ background-color: #dc3545; }
 .pricingTable.blue .pricing-content li:before{ background-color: #00CCFF; }
 .pricingTable.blue .pricingTable-signup a{ background-color: #00CCFF; }
 .pricingTable.blue .pricingTable-signup a:hover{
