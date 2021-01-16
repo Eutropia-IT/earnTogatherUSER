@@ -34,6 +34,43 @@
       text-align: center;
       background-color: #4e73df;
     }
+
+    .lds-ripple {
+      display: inline;
+      position: relative;
+      width: 60px;
+      height: 60px;
+    }
+
+    .lds-ripple div {
+      position: absolute;
+      border: 4px solid rgb(255, 196, 0);
+      opacity: 1;
+      border-radius: 50%;
+      animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+
+    .lds-ripple div:nth-child(2) {
+      animation-delay: -0.5s;
+    }
+
+    @keyframes lds-ripple {
+      0% {
+        top: 23px;
+        left: 23px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+      }
+
+      100% {
+        top: 0px;
+        left: 0px;
+        width: 46px;
+        height: 46px;
+        opacity: 0;
+      }
+    }
   </style>
 
 </head>
@@ -122,6 +159,12 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">Pending
                           <i class="fas fa-pause-circle fa-1x text-warning"></i>
                         </div>
+                        <br>
+                        Please Make Payment For Active Account. <a href="/newIdActivation" class="link-info">Click Now</a>
+                        <div class="lds-ripple">
+                          <div></div>
+                          <div></div>
+                        </div>
                       </div>
                       {{/equal}}
                       {{#equal account_status 'active'}}
@@ -137,6 +180,12 @@
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Account Status</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">Renew Needed
                           <i class="fas fa-pause-circle fa-1x text-warning"></i>
+                        </div>
+                        <br>
+                        Please Make Payment For Active Account. <a href="/upgradPackage" class="link-info">Click Now</a>
+                        <div class="lds-ripple">
+                          <div></div>
+                          <div></div>
                         </div>
                       </div>
                       {{/equal}}
